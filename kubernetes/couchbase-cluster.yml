@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cb-example-auth
+type: Opaque
+data:
+  username: QWRtaW5pc3RyYXRvcg== # Administrator
+  password: cGFzc3dvcmQ=         # password
+---
+apiVersion: couchbase.com/v2
+kind: CouchbaseBucket
+metadata:
+  name: couchbase-sample
+  replicas: 3
+---
+apiVersion: couchbase.com/v2
+kind: CouchbaseCluster
+metadata:
+  name: cb-example
+spec:
+  image: couchbase/server:6.6.0
+  cluster:
+    autoFailoverTimeout: 10s
+    autoFailoverMaxCount: 2
+    autoFailoverOnDataDiskIssues: true
+    autoFailoverOnDataDiskIssuesTimePeriod: 20s
+    autoFailoverServerGroup: false
+  security:
+    adminSecret: cb-example-auth
+  buckets:
+    managed: true
+  servers:
+  - size: 20
+    name: data_svc
+    services:
+    - data
+  - size: 3
+    name: all_services
+    services:
+    - index
+    - query
+    - search
+

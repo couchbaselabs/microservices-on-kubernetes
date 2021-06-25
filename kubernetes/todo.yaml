@@ -1,0 +1,7 @@
+apiVersion: todoexample.com/v1
+kind: Todo
+metadata:
+  name: speak-at-nosqlbr
+spec:
+  when: "2020-11-18T13:00:00Z"
+  message: "Speak at NoSQL BR"

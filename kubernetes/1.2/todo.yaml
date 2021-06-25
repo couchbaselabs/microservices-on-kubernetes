@@ -1,7 +1,0 @@
-apiVersion: todoexample.com/v1
-kind: Todo
-metadata:
-  name: devfest-romania
-spec:
-  when: "2019-11-15T14:00:00Z"
-  message: "Speak at DevFest Romania"
