@@ -30,14 +30,14 @@ spec:
   buckets:
     managed: true
   servers:
-  - size: 20
-    name: data_svc
-    services:
-    - data
   - size: 3
     name: all_services
     services:
+    - data
     - index
     - query
     - search
+    - eventing
+    - analytics
+
 
